@@ -1,7 +1,7 @@
 About
 =====
 
-It's an example about the easy way to get image from google search without API key.
+It's an example about the easy way to get image from google search without API key.<br/>
 We used this after google has added a paiement inside Image API conditions.
 
 Usage
