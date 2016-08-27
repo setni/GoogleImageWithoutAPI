@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>google Image Without API</title>
+<script type="text/javascript" src="jquery.js"></script>
+
+</head>
+    
+<body>
+<h1>Google Image search without API</h1>
+<form action="javascript:recherche();">
+    <label for="title">Title of the song</label>
+    <input type="search" name="title" id="titre" placeholder="Title of the song"><br>
+    <label for="artiste">Artiste(s) of the song</label>
+    <input type="search" name="artiste" id="artiste" placeholder="Artiste(s) of the song"><br><br>
+    <input type="submit" value="go">
+</form>
+    <div id="img">
+        
+    </div>
+    
+</body>
+<script>
+
+function recherche () {
+    $('#img').html('');
+    titre   = $('#titre').val();
+    artiste = $('#artiste').val();
+    $.get('main.php', {titre : encodeURIComponent(titre), artiste : encodeURIComponent(artiste)}, function (donne) {
+        eval(donne);
+        $.each(data[0], function (key, value) {
+            $('<img onClick="choix_img(this);" src="'+value[1]+'" />').appendTo('#img');
+        });
+    }, 'script');   
+}
+    
+function choix_img (e) {
+    img_data = $(e).attr('src');
+    $.post('saveImage.php', {img_data : img_data}, function (r) {
+        
+        //Put here some code...    
+        
+    });
+}    
+
+    
+</script>
+</html>
